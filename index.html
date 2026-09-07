@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohamed Adel — Laravel Backend Developer</title>
+<meta name="description" content="Portfolio of Mohamed Adel Mahmoud, a Laravel Backend Developer from Cairo, Egypt building scalable APIs and real-world web applications.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0e17; --bg2:#0f1524; --card:#131a2b; --card2:#1a2338;
+  --border:#232e47; --text:#e8edf7; --muted:#93a0b8;
+  --accent:#ff6b35; --accent2:#f7c548; --teal:#2dd4bf;
+  --grad:linear-gradient(135deg,#ff6b35 0%,#f7c548 100%);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+::selection{background:var(--accent);color:#fff}
+h1,h2,h3,h4{font-family:'Sora',sans-serif}
+.mono{font-family:'JetBrains Mono',monospace}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+
+/* ===== Nav ===== */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(14px);background:rgba(10,14,23,.75);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1100px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:15px;color:var(--text);text-decoration:none}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:10px;font-weight:600;font-size:14px;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.btn-primary{background:var(--grad);color:#1a1005}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,107,53,.35)}
+.btn-ghost{border:1px solid var(--border);color:var(--text)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ===== Hero ===== */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:120px 0 80px}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(600px 400px at 85% 15%,rgba(255,107,53,.14),transparent 60%),
+  radial-gradient(500px 400px at 10% 85%,rgba(45,212,191,.10),transparent 60%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:60px;align-items:center;position:relative}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border:1px solid var(--border);border-radius:100px;font-size:13px;color:var(--muted);background:var(--bg2);margin-bottom:24px}
+.badge .dot{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 12px #4ade80;animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.4}}
+.hero h1{font-size:clamp(38px,6vw,64px);font-weight:800;line-height:1.1;margin-bottom:8px}
+.hero h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .role{font-size:clamp(18px,2.5vw,24px);color:var(--muted);font-weight:500;margin-bottom:20px;font-family:'Sora',sans-serif}
+.hero p.summary{color:var(--muted);font-size:16px;max-width:540px;margin-bottom:32px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px}
+.hero-meta{display:flex;gap:24px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+.hero-meta a{color:var(--muted);text-decoration:none;transition:color .2s}
+.hero-meta a:hover{color:var(--accent)}
+.hero-meta .item{display:flex;align-items:center;gap:7px}
+
+/* code card */
+.code-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.4);transform:rotate(1.5deg);transition:transform .3s}
+.code-card:hover{transform:rotate(0)}
+.code-head{display:flex;gap:7px;padding:14px 18px;background:var(--card2);border-bottom:1px solid var(--border)}
+.code-head i{width:12px;height:12px;border-radius:50%;display:block}
+.code-body{padding:22px;font-family:'JetBrains Mono',monospace;font-size:13.5px;line-height:1.9}
+.c-k{color:#c792ea}.c-f{color:#82aaff}.c-s{color:#c3e88d}.c-c{color:#546e8a}.c-p{color:#f78c6c}.c-v{color:#ffcb6b}
+
+/* ===== Sections ===== */
+section{padding:90px 0}
+.section-head{margin-bottom:50px}
+.section-head .eyebrow{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:13px;letter-spacing:2px;text-transform:uppercase;display:block;margin-bottom:10px}
+.section-head h2{font-size:clamp(28px,4vw,40px);font-weight:700}
+
+/* About */
+.about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px;transition:border-color .25s,transform .25s}
+.stat:hover{border-color:var(--accent);transform:translateY(-4px)}
+.stat .num{font-family:'Sora',sans-serif;font-size:34px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .lbl{color:var(--muted);font-size:14px;margin-top:4px}
+.about-text{margin-top:36px;color:var(--muted);font-size:16px;max-width:760px}
+
+/* Skills */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}
+.skill-cat{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px}
+.skill-cat h3{font-size:14px;color:var(--accent);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:6px 13px;border-radius:8px;background:var(--card2);border:1px solid var(--border);font-size:13px;color:var(--text);transition:border-color .2s,color .2s}
+.chip:hover{border-color:var(--accent)}
+
+/* Experience */
+.timeline{position:relative;padding-left:32px}
+.timeline::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:var(--border)}
+.t-item{position:relative;margin-bottom:36px}
+.t-item::before{content:"";position:absolute;left:-30px;top:8px;width:14px;height:14px;border-radius:50%;background:var(--grad);box-shadow:0 0 0 4px var(--bg)}
+.t-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px}
+.t-card .when{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent2)}
+.t-card h3{font-size:20px;margin:6px 0 2px}
+.t-card .org{color:var(--muted);font-size:14px;margin-bottom:14px}
+.t-card ul{list-style:none}
+.t-card li{color:var(--muted);font-size:14.5px;padding-left:22px;position:relative;margin-bottom:8px}
+.t-card li::before{content:"▸";position:absolute;left:0;color:var(--accent)}
+
+/* Projects */
+.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.project{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:30px;display:flex;flex-direction:column;transition:transform .25s,border-color .25s,box-shadow .25s;position:relative;overflow:hidden}
+.project::after{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);opacity:0;transition:opacity .25s}
+.project:hover{transform:translateY(-6px);border-color:#3a4763;box-shadow:0 24px 50px rgba(0,0,0,.4)}
+.project:hover::after{opacity:1}
+.project .p-icon{width:46px;height:46px;border-radius:12px;background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px}
+.project h3{font-size:19px;margin-bottom:4px}
+.project .p-tag{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--teal);margin-bottom:12px}
+.project p{color:var(--muted);font-size:14.5px;margin-bottom:16px}
+.project ul{list-style:none;margin-bottom:18px}
+.project li{color:var(--muted);font-size:13.5px;padding-left:20px;position:relative;margin-bottom:6px}
+.project li::before{content:"▹";position:absolute;left:0;color:var(--accent)}
+.p-foot{margin-top:auto;display:flex;gap:8px;flex-wrap:wrap}
+
+/* Education + Languages */
+.split{display:grid;grid-template-columns:1.4fr 1fr;gap:24px}
+.edu-card,.lang-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px}
+.edu-card h3,.lang-card h3{font-size:18px;margin-bottom:6px}
+.edu-card .sub{color:var(--accent2);font-size:14px;margin-bottom:12px}
+.edu-card p{color:var(--muted);font-size:14.5px}
+.lang-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.lang-row .name{font-weight:600;font-size:15px}
+.lang-row .lvl{color:var(--muted);font-size:13px}
+.bar{height:6px;border-radius:6px;background:var(--card2);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:6px;background:var(--grad)}
+
+/* Contact */
+#contact{text-align:center;background:var(--bg2);border-top:1px solid var(--border)}
+#contact h2{font-size:clamp(28px,4vw,40px);margin-bottom:16px}
+#contact p{color:var(--muted);max-width:520px;margin:0 auto 32px}
+.contact-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.contact-card{display:flex;align-items:center;gap:10px;padding:14px 22px;border:1px solid var(--border);border-radius:12px;background:var(--card);color:var(--text);text-decoration:none;font-size:14px;font-weight:500;transition:border-color .2s,transform .2s}
+.contact-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+
+footer{padding:30px 0;border-top:1px solid var(--border);text-align:center;color:var(--muted);font-size:13.5px}
+footer span{color:var(--accent)}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:none}
+
+@media(max-width:880px){
+  .hero-grid{grid-template-columns:1fr}
+  .code-card{transform:none;max-width:480px}
+  .projects-grid{grid-template-columns:1fr}
+  .about-grid{grid-template-columns:1fr 1fr}
+  .split{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#"><span>&lt;</span>mohamed.adel<span>/&gt;</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="btn btn-primary" href="mailto:ma8084239@gmail.com">Hire Me</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="badge"><span class="dot"></span> Available for new opportunities</span>
+      <h1>Mohamed Adel<br><span class="grad">Mahmoud</span></h1>
+      <div class="role">Laravel Backend Developer</div>
+      <p class="summary">I build real-world web applications and scalable REST APIs with PHP &amp; Laravel — clean architecture, solid validation, and payment flows that just work.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#projects">View My Work</a>
+        <a class="btn btn-ghost" href="https://github.com/MOHAMED-ADEL-MA" target="_blank">GitHub ↗</a>
+      </div>
+      <div class="hero-meta">
+        <span class="item">📍 Cairo, Egypt</span>
+        <a class="item" href="mailto:ma8084239@gmail.com">✉️ ma8084239@gmail.com</a>
+        <a class="item" href="https://linkedin.com/in/mohamed-adel" target="_blank">💼 LinkedIn</a>
+      </div>
+    </div>
+    <div class="code-card">
+      <div class="code-head">
+        <i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i>
+      </div>
+      <div class="code-body">
+<span class="c-k">class</span> <span class="c-f">BackendDeveloper</span> <span class="c-k">extends</span> <span class="c-f">Developer</span><br>
+{<br>
+&nbsp;&nbsp;<span class="c-k">public</span> <span class="c-v">$name</span> = <span class="c-s">'Mohamed Adel'</span>;<br>
+&nbsp;&nbsp;<span class="c-k">public</span> <span class="c-v">$stack</span> = [<span class="c-s">'PHP'</span>, <span class="c-s">'Laravel'</span>, <span class="c-s">'MySQL'</span>];<br>
+<br>
+&nbsp;&nbsp;<span class="c-k">public function</span> <span class="c-f">build</span>(): <span class="c-p">ApiResponse</span><br>
+&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-c">// Controller → Service → Action</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">return</span> <span class="c-v">$this</span>-><span class="c-f">scalable</span>()-><span class="c-f">api</span>();<br>
+&nbsp;&nbsp;}<br>
+}
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">01 · About</span>
+      <h2>Backend developer, problem solver</h2>
+    </div>
+    <div class="about-grid reveal">
+      <div class="stat"><div class="num">4+</div><div class="lbl">Real-world Laravel projects</div></div>
+      <div class="stat"><div class="num">REST</div><div class="lbl">End-to-end APIs built &amp; reviewed</div></div>
+      <div class="stat"><div class="num">CSA</div><div class="lbl">Controller·Service·Action architecture</div></div>
+    </div>
+    <p class="about-text reveal">Laravel Backend Developer with hands-on experience building real-world web applications. Skilled in PHP, Laravel, and MySQL/SQLite, with a strong understanding of OOP, MVC architecture, and RESTful APIs. Passionate about backend development and building scalable systems — from OTP authentication and Paymob payment integrations to booking engines with conflict validation and clean, layered architecture.</p>
+  </div>
+</section>
+
+<section id="skills" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">02 · Skills</span>
+      <h2>Tools of the trade</h2>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-cat"><h3>⚡ Languages</h3><div class="chips"><span class="chip">PHP</span><span class="chip">JavaScript</span><span class="chip">HTML</span><span class="chip">CSS</span></div></div>
+      <div class="skill-cat"><h3>🧩 Frameworks</h3><div class="chips"><span class="chip">Laravel</span><span class="chip">Bootstrap</span><span class="chip">Tailwind</span></div></div>
+      <div class="skill-cat"><h3>🗄️ Databases</h3><div class="chips"><span class="chip">MySQL</span><span class="chip">SQLite</span></div></div>
+      <div class="skill-cat"><h3>🧠 Concepts</h3><div class="chips"><span class="chip">OOP</span><span class="chip">MVC</span><span class="chip">REST APIs</span><span class="chip">Data Structures</span></div></div>
+      <div class="skill-cat"><h3>🛠️ Tools</h3><div class="chips"><span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">Composer</span><span class="chip">Postman</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">03 · Experience</span>
+      <h2>Where I've worked</h2>
+    </div>
+    <div class="timeline reveal">
+      <div class="t-item">
+        <div class="t-card">
+          <span class="when">Laravel Backend Developer</span>
+          <h3>Backend Developer</h3>
+          <div class="org">Huma-Volve · Development Team</div>
+          <ul>
+            <li>Working on multiple Laravel API-based projects, owning specific modules within larger collaborative builds following a Controller → Service → Action architecture with Form Requests, API Resources, and reusable traits.</li>
+            <li>Built the backend REST API for <b>Foodify</b>, a healthy food delivery app: authentication, address management, and order flows.</li>
+            <li>Integrated SMS OTP verification, evaluating SMS Misr for reliable delivery.</li>
+            <li>Implemented Paymob payment integration using a Strategy Pattern to support multiple payment methods.</li>
+            <li>Contributed to a Laravel Booking System module: reservation flow, availability scheduling, conflict validation, and status management (pending / confirmed / cancelled).</li>
+            <li>Prepared and delivered internal technical sessions, including a presentation on the Strategy design pattern with a slide-by-slide speaking guide.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">04 · Projects</span>
+      <h2>Things I've built</h2>
+    </div>
+    <div class="projects-grid">
+      <article class="project reveal">
+        <div class="p-icon">🥗</div>
+        <h3>Foodify</h3>
+        <div class="p-tag">Laravel 13 · REST API · Paymob</div>
+        <p>A complete backend REST API for a healthy food delivery application — covering authentication, address management, ordering, and payments end to end.</p>
+        <ul>
+          <li>OTP-based verification flow (SMS Misr)</li>
+          <li>Paymob payments via Strategy Pattern</li>
+          <li>Address book + full order lifecycle</li>
+          <li>Hardened after external code review</li>
+        </ul>
+        <div class="p-foot"><span class="chip">Form Requests</span><span class="chip">API Resources</span><span class="chip">ApiResponseTrait</span></div>
+      </article>
+
+      <article class="project reveal">
+        <div class="p-icon">📅</div>
+        <h3>Booking System</h3>
+        <div class="p-tag">Laravel 13 · REST API · Team project</div>
+        <p>A reservation/booking module handling the full booking lifecycle — from availability lookup to confirmation — with double-booking prevention.</p>
+        <ul>
+          <li>Time-slot scheduling + conflict validation</li>
+          <li>Status management at the service layer</li>
+          <li>Form Request validation before business logic</li>
+          <li>Uniform responses via ApiResponseTrait</li>
+        </ul>
+        <div class="p-foot"><span class="chip">Service/Action</span><span class="chip">Conflict Validation</span></div>
+      </article>
+
+      <article class="project reveal">
+        <div class="p-icon">🎓</div>
+        <h3>Course Management System</h3>
+        <div class="p-tag">Laravel · Full system</div>
+        <p>A full system for managing courses, students, and payments with role-based access and reporting.</p>
+        <ul>
+          <li>Instructors, students, courses &amp; enrollments</li>
+          <li>Users, staff and permission management</li>
+          <li>Payment tracking &amp; remaining balances</li>
+          <li>Attendance + filtering (course/date/student)</li>
+          <li>Export data to Excel &amp; PDF</li>
+        </ul>
+        <div class="p-foot"><span class="chip">Excel Export</span><span class="chip">PDF</span><span class="chip">Permissions</span></div>
+      </article>
+
+      <article class="project reveal">
+        <div class="p-icon">🧾</div>
+        <h3>Valex Billing System</h3>
+        <div class="p-tag">Laravel · Spatie · Dashboard</div>
+        <p>A scalable billing collection platform enabling organizations to manage clients, services, and invoice operations efficiently.</p>
+        <ul>
+          <li>Full invoice lifecycle (paid / unpaid / partial / archived)</li>
+          <li>Role-based authorization with Spatie Permissions</li>
+          <li>Real-time activity notifications</li>
+          <li>Analytics dashboard with charts</li>
+          <li>PDF &amp; Excel export</li>
+        </ul>
+        <div class="p-foot"><span class="chip">Spatie</span><span class="chip">Charts</span><span class="chip">Clean Architecture</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">05 · Education &amp; Languages</span>
+      <h2>Foundation</h2>
+    </div>
+    <div class="split reveal">
+      <div class="edu-card">
+        <h3>Bachelor of Information Technology</h3>
+        <div class="sub">Assiut University — Faculty of Computers and Artificial Intelligence · IT Department</div>
+        <p>Studied core computer science and IT fundamentals — programming, data structures, databases, and software engineering — building the foundation for a backend engineering career.</p>
+      </div>
+      <div class="lang-card">
+        <h3 style="margin-bottom:18px">Languages</h3>
+        <div class="lang-row"><span class="name">🇪🇬 Arabic</span><span class="lvl">Native</span></div>
+        <div class="bar" style="margin-bottom:22px"><i style="width:100%"></i></div>
+        <div class="lang-row"><span class="name">🇬🇧 English</span><span class="lvl">Intermediate</span></div>
+        <div class="bar"><i style="width:60%"></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="section-head reveal" style="text-align:center">
+      <span class="eyebrow">06 · Contact</span>
+      <h2>Let's build something together</h2>
+    </div>
+    <p class="reveal">I'm open to backend developer roles and freelance Laravel API work. Reach out — I usually reply fast.</p>
+    <div class="contact-links reveal">
+      <a class="contact-card" href="mailto:ma8084239@gmail.com">✉️ ma8084239@gmail.com</a>
+      <a class="contact-card" href="tel:+201124616674">📱 +20 112 461 6674</a>
+      <a class="contact-card" href="https://github.com/MOHAMED-ADEL-MA" target="_blank">🐙 GitHub</a>
+      <a class="contact-card" href="https://linkedin.com/in/mohamed-adel" target="_blank">💼 LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">Designed &amp; built with <span>♥</span> by Mohamed Adel · © 2026</div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

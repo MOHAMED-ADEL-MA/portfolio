@@ -46,7 +46,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(14px);b
 .nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
 .nav-links a:hover{color:var(--text)}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:10px;font-weight:600;font-size:14px;text-decoration:none;transition:transform .2s,box-shadow .2s}
-.btn-primary{background:var(--grad);color:#1a1005}
+.btn-primary{background:#ff6b35;background:var(--grad);color:#1a1005}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,107,53,.35)}
 .btn-ghost{border:1px solid var(--border);color:var(--text)}
 .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
@@ -61,7 +61,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(14px);b
 .badge .dot{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 12px #4ade80;animation:pulse 2s infinite}
 @keyframes pulse{50%{opacity:.4}}
 .hero h1{font-size:clamp(38px,6vw,64px);font-weight:800;line-height:1.1;margin-bottom:8px}
-.hero h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h1 .grad{color:var(--accent);background:var(--grad);-webkit-background-clip:text;background-clip:text}
 .hero .role{font-size:clamp(18px,2.5vw,24px);color:var(--muted);font-weight:500;margin-bottom:20px;font-family:'Sora',sans-serif}
 .hero p.summary{color:var(--muted);font-size:16px;max-width:540px;margin-bottom:32px}
 .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px}
@@ -88,7 +88,8 @@ section{padding:90px 0}
 .about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .stat{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px;transition:border-color .25s,transform .25s}
 .stat:hover{border-color:var(--accent);transform:translateY(-4px)}
-.stat .num{font-family:'Sora',sans-serif;font-size:34px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .num{font-family:'Sora',sans-serif;font-size:34px;font-weight:800;color:var(--accent);background:var(--grad);-webkit-background-clip:text;background-clip:text}
+@supports not ((-webkit-background-clip:text) or (background-clip:text)){.stat .num,.hero h1 .grad{background:none;color:var(--accent)}}
 .stat .lbl{color:var(--muted);font-size:14px;margin-top:4px}
 .about-text{margin-top:36px;color:var(--muted);font-size:16px;max-width:760px}
 
@@ -119,7 +120,8 @@ section{padding:90px 0}
 .project::after{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);opacity:0;transition:opacity .25s}
 .project:hover{transform:translateY(-6px);border-color:#3a4763;box-shadow:0 24px 50px rgba(0,0,0,.4)}
 .project:hover::after{opacity:1}
-.project .p-icon{width:46px;height:46px;border-radius:12px;background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px}
+.project .p-icon{width:46px;height:46px;border-radius:12px;background:var(--card2);display:flex;align-items:center;justify-content:center;margin-bottom:18px;border:1px solid var(--border)}
+.p-icon svg{width:23px;height:23px;color:var(--accent)}
 .project h3{font-size:19px;margin-bottom:4px}
 .project .p-tag{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--teal);margin-bottom:12px}
 .project p{color:var(--muted);font-size:14.5px;margin-bottom:16px}
@@ -167,6 +169,16 @@ footer span{color:var(--accent)}
   .about-grid{grid-template-columns:1fr 1fr}
   .split{grid-template-columns:1fr}
   .nav-links{display:none}
+  .nav-inner{padding:14px 16px}
+  .nav-inner .btn{white-space:nowrap;flex-shrink:0;padding:10px 16px}
+}
+@media(max-width:560px){
+  .about-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .stat{padding:20px 16px}
+  .stat .num{font-size:26px}
+  .stat .lbl{font-size:13px}
+  .hero-cta .btn{flex:1;justify-content:center}
+  section{padding:70px 0}
 }
 </style>
 </head>
@@ -289,7 +301,7 @@ footer span{color:var(--accent)}
     </div>
     <div class="projects-grid">
       <article class="project reveal">
-        <div class="p-icon">🥗</div>
+        <div class="p-icon"><svg class="icon-stroke" viewBox="0 0 24 24"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22a4.91 4.91 0 0 0-4.11-4.78C16.31 2.77 15 3.5 14.5 4.5h-5C9 3.5 7.69 2.77 6.11 3 3.66 3.42 2 5.61 2 7.72 2 12 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/><path d="M10 2v3"/><path d="M14 2v3"/></svg></div>
         <h3>Foodify</h3>
         <div class="p-tag">Laravel 13 · REST API · Paymob</div>
         <p>A complete backend REST API for a healthy food delivery application — covering authentication, address management, ordering, and payments end to end.</p>
@@ -303,7 +315,7 @@ footer span{color:var(--accent)}
       </article>
 
       <article class="project reveal">
-        <div class="p-icon">📅</div>
+        <div class="p-icon"><svg class="icon-stroke" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg></div>
         <h3>Booking System</h3>
         <div class="p-tag">Laravel 13 · REST API · Team project</div>
         <p>A reservation/booking module handling the full booking lifecycle — from availability lookup to confirmation — with double-booking prevention.</p>
@@ -317,7 +329,7 @@ footer span{color:var(--accent)}
       </article>
 
       <article class="project reveal">
-        <div class="p-icon">🎓</div>
+        <div class="p-icon"><svg class="icon-stroke" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg></div>
         <h3>Course Management System</h3>
         <div class="p-tag">Laravel · Full system</div>
         <p>A full system for managing courses, students, and payments with role-based access and reporting.</p>
@@ -332,7 +344,7 @@ footer span{color:var(--accent)}
       </article>
 
       <article class="project reveal">
-        <div class="p-icon">🧾</div>
+        <div class="p-icon"><svg class="icon-stroke" viewBox="0 0 24 24"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M8 7h8"/><path d="M8 11h8"/><path d="M8 15h5"/></svg></div>
         <h3>Valex Billing System</h3>
         <div class="p-tag">Laravel · Spatie · Dashboard</div>
         <p>A scalable billing collection platform enabling organizations to manage clients, services, and invoice operations efficiently.</p>
